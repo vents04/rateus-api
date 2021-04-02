@@ -28,10 +28,12 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json({ limit: '100MB' })).use(express.urlencoded({ extended: true }));
 
 const {
-    waitlist
+    waitlist,
+    business
 } = require('./routes/all-routes.import');
 
 app.use('/waitlist', waitlist);
+app.use('/business', business);
 
 app.listen(process.env.PORT || 8080, () => {
     console.log("Server listening on port 8080");
