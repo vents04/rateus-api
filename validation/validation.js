@@ -8,4 +8,13 @@ const createWaitlistValidation = data => {
     return schema.validate(data);
 }
 
+const loginValidation = data => {
+    const schema = Joi.object({
+        emailOrPhone: Joi.string().required(),
+        password: Joi.string().required()
+    });
+    return schema.validate(data);
+}
+
 module.exports.createWaitlistValidation = createWaitlistValidation;
+module.exports.loginValidation = loginValidation;
