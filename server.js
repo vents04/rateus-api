@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-//const mongoDb = require('./db/mongoose');
+const mongoDb = require('./db/mongoose');
 const { ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_KEEPER } = require('./global');
 
 const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_KEEPER];
