@@ -33,6 +33,10 @@ router.put('/', authenticate, (req, res) => {
             const id = req.body._id;
             delete req.body._id;
 
+            if(req.body.questions.length <= 0 || req.body.questions.length > 4) {
+                return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': "Invalid questions count." }, res);
+            }
+
             QuestionnaireService.updateQuestionnaire({_id: id}, req.body).then((updateQuestionnaire) => {
                 res.status(200).send({
                     updatedQuestionnaire: updateQuestionnaire
