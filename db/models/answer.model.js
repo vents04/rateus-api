@@ -12,7 +12,7 @@ const answerSchema = new mongoose.Schema({
     answers:[
     {
         answer: {
-            type: mongoose.Types.ObjectId,
+            type: String,
             required: true
         },
         input: {
