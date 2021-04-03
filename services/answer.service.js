@@ -29,7 +29,7 @@ class AnswerService {
         })
     }
 
-    getAnswer(data) {
+    getAnswers(data) {
         return new Promise((resolve, reject) => {
             try {
                 Answer.find(data).then((answers) => {
