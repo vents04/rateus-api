@@ -28,6 +28,20 @@ class QuestionnaireService {
             }
         })
     }
+
+    getQuestionnaires(data) {
+        return new Promise((resolve, reject) => {
+            try {
+                Questionnaire.find(data).then((questionnaires) => {
+                    resolve(questionnaires);
+                });
+            } catch (err) {
+                reject({
+                    'errorCode': 500,
+                });
+            }
+        })
+    }
 }
 
 module.exports.QuestionnaireService = QuestionnaireService;
