@@ -30,6 +30,20 @@ class BusinessService {
             }
         })
     }
+
+    updateBusiness(data) {
+        return new Promise((resolve, reject) => {
+            try {
+                Business.updateOne(data).then((business) => {
+                    resolve(business);
+                });
+            } catch (err) {
+                reject({
+                    'errorCode': 500,
+                });
+            }
+        })
+    }
 }
 
 module.exports.BusinessService = BusinessService;
