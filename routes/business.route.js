@@ -78,6 +78,15 @@ router.get('/', authenticate, (req, res) => {
     })
 })
 
+router.get('/color/:id', (req, res) => {
+    BusinessService.getBusiness({_id: req.params.id}).then((business) => {
+        res.status(200).send({
+            color: business.color
+        })
+    }).catch((err) => {
+        return ErrorHandler.returnError(err, res);
+    })
+})
 
 async function createBusiness() {
     const salt = await bcrypt.genSalt(10);
