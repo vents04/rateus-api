@@ -36,6 +36,7 @@ const {
 app.use('/waitlist', waitlist);
 app.use('/business', business);
 app.use('/questionnaire', questionnaire);
+app.use('/answer', answer);
 
 app.listen(process.env.PORT || 8080, () => {
     console.log("Server listening on port 8080");
