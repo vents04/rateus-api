@@ -42,4 +42,23 @@ router.get('/:id', (req, res) => {
     }
 });
 
+router.get('/by-questionnaire-id/:id', authenticate, (req, res) => {
+    if(mongoose.Types.ObjectId.isValid(req.params.id)) {
+        QuestionnaireService.getQuestionnaire({ _id: req.params.id }).then((questionnaire) => {
+            if(questionnaire.businessId != req.business._id) {
+                return ErrorHandler.returnError({'errorCode': 403, 'errorMessage': 'Invalid questionnaire id'}, res);
+            }
+            AnswerService.getAnswers({questionnaireId: req.params.id}).then((answers) => {
+                res.status(200).send({
+                    answers: answers
+                })
+            })
+        }).catch((err) => {
+            return ErrorHandler.returnError(err, res);
+        })
+    } else {
+        return ErrorHandler.returnError({'errorCode': 400, 'errorMessage': 'Invalid answer id'}, res);
+    }
+});
+
 module.exports = router;
