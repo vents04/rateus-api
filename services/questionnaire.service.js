@@ -42,6 +42,20 @@ class QuestionnaireService {
             }
         })
     }
+
+    updateQuestionnaire(findData, updateData) {
+        return new Promise((resolve, reject) => {
+            try {
+                Questionnaire.findOneAndUpdate(findData, updateData).then((questionnaire) => {
+                    resolve(questionnaire);
+                });
+            } catch (err) {
+                reject({
+                    'errorCode': 500,
+                });
+            }
+        })
+    }
 }
 
 module.exports.QuestionnaireService = QuestionnaireService;
