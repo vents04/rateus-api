@@ -94,7 +94,7 @@ router.get('/dashboard', authenticate, (req, res) => {
                 }
             });
 
-            questionnairesResult.push({ title: questionnaires[index].title, responses: tempAnswers });
+            questionnairesResult.push({ title: questionnaires[index].title, responses: tempAnswers, _id: questionnaires[index]._id });
             totalAnswers += tempAnswers;
             tempAnswers = 0;
         }
