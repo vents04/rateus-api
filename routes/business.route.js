@@ -69,7 +69,7 @@ router.post('/check-token', (req, res) => {
 
 router.get('/', authenticate, (req, res) => {
     BusinessService.getBusiness({_id: req.business._id}).then((business) => {
-        delete business._id; delete business.lastPasswordReset; delete business.accountCreation; delete business.__v; delete business.uId;
+        delete business.lastPasswordReset; delete business.accountCreation; delete business.__v; delete business.uId;
         res.status(200).send({
             business: business
         })
