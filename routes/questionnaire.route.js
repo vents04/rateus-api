@@ -8,6 +8,8 @@ const BusinessService = new(require('../services/business.service').BusinessServ
 
 const { questionnaireValidation } = require('../validation/validation');
 
+const authenticate = require('../middlewares/authenticate');
+
 router.get('/:id', (req, res) => {
     if(mongoose.Types.ObjectId.isValid(req.params.id)) {
         QuestionnaireService.getQuestionnaire({_id: req.params.id}).then((questionnaire) => {
@@ -27,8 +29,17 @@ router.put('/', authenticate, (req, res) => {
     if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
 
     QuestionnaireService.getQuestionnaire({_id: req.body._id}).then((questionnaire) => {
-        if (questionnaire.businessId === req.business._id) {
-            
+        if (questionnaire.businessId == req.business._id) {
+            const id = req.body._id;
+            delete req.body._id;
+
+            QuestionnaireService.updateQuestionnaire({_id: id}, req.body).then((updateQuestionnaire) => {
+                res.status(200).send({
+                    updatedQuestionnaire: updateQuestionnaire
+                })
+            }).catch((err) => {
+                return ErrorHandler.returnError(err, res);
+            })
         } else {
             return ErrorHandler.returnError({'errorCode': 403}, res);
         }

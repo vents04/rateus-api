@@ -17,7 +17,7 @@ const loginValidation = data => {
     return schema.validate(data);
 }
 
-const questionnaireValiation = data => {
+const questionnaireValidation = data => {
     const schema = Joi.object({
         questions: Joi.array().items({
             title: Joi.string().required(),
@@ -31,4 +31,4 @@ const questionnaireValiation = data => {
 
 module.exports.createWaitlistValidation = createWaitlistValidation;
 module.exports.loginValidation = loginValidation;
-module.exports.questionnaireValiation = questionnaireValiation;
+module.exports.questionnaireValidation = questionnaireValidation;
