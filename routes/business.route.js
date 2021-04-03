@@ -82,10 +82,9 @@ router.get('/', authenticate, (req, res) => {
 
 router.get('/dashboard', authenticate, (req, res) => {
     QuestionnaireService.getQuestionnaires({ businessId: req.business._id}).then((questionnaires) => {
-        console.log(questionnaires);
         let totalAnswers = 0, lastWeekAnswers = 0;
         for (let index = 0; index < questionnaires.length; index++) {
-            AnswerService.getAnswers({ questionnaireId: questionnaires[i]._id }).then((answers) => {
+            AnswerService.getAnswers({ questionnaireId: questionnaires[index]._id }).then((answers) => {
                 totalAnswers += answers.length;
                 for (let j = 0; j < answers.length; j++) {
                     if(new Date(answers[j].dt).getTime() + 604800000 >= new Date().getTime()) {
