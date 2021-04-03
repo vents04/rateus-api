@@ -78,7 +78,7 @@ router.get('/', authenticate, (req, res) => {
     })
 })
 
-router.get('/color/:id', (req, res) => {
+router.get('/:id/color', (req, res) => {
     BusinessService.getBusiness({_id: req.params.id}).then((business) => {
         res.status(200).send({
             color: business.color
