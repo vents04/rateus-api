@@ -81,18 +81,21 @@ router.get('/', authenticate, (req, res) => {
 })
 
 router.get('/dashboard', authenticate, (req, res) => {
-    QuestionnaireService.getQuestionnaires({ businessId: req.business._id}).then((questionnaires) => {
+    QuestionnaireService.getQuestionnaires({ businessId: req.business._id}).then(async (questionnaires) => {
         let totalAnswers = 0, lastWeekAnswers = 0, tempAnswers = 0;
         let questionnairesResult = [];
         for (let index = 0; index < questionnaires.length; index++) {
-            AnswerService.getAnswers({ questionnaireId: questionnaires[index]._id }).then((answers) => {
-                tempAnswers += answers.length;
-                for (let j = 0; j < answers.length; j++) {
-                    if(new Date(answers[j].dt).getTime() + 604800000 >= new Date().getTime()) {
-                        lastWeekAnswers++;
-                    }   
-                }
-            });
+            await new Promise((resolve, reject) => { 
+                AnswerService.getAnswers({ questionnaireId: questionnaires[index]._id }).then((answers) => {
+                    tempAnswers += answers.length;
+                    for (let j = 0; j < answers.length; j++) {
+                        if(new Date(answers[j].dt).getTime() + 604800000 >= new Date().getTime()) {
+                            lastWeekAnswers++;
+                        }   
+                    }
+                    resolve();
+                });
+            })
 
             questionnairesResult.push({ title: questionnaires[index].title, responses: tempAnswers, _id: questionnaires[index]._id });
             totalAnswers += tempAnswers;
