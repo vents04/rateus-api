@@ -37,6 +37,10 @@ const businessSchema = new mongoose.Schema({
     lastPasswordReset:{
         type: Date,
         default: Date.now
+    },
+    totalReviews: {
+        type: Number,
+        default: 0
     }
 })
 

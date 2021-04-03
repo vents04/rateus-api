@@ -10,6 +10,8 @@ const { JWT_SECRET } = require('../global');
 
 const { loginValidation } = require('../validation/validation');
 
+const authenticate = require('../middlewares/authenticate');
+
 router.post('/login', (req, res) => {
     const { error } = loginValidation(req.body);
     if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
@@ -65,6 +67,17 @@ router.post('/check-token', (req, res) => {
     }
 });
 
+router.get('/', authenticate, (req, res) => {
+    BusinessService.getBusiness({_id: req.business._id}).then((business) => {
+        delete business._id; delete business.lastPasswordReset; delete business.accountCreation; delete business.__v; delete business.uId;
+        res.status(200).send({
+            business: business
+        })
+    }).catch((err) => {
+        return ErrorHandler.returnError(err, res);
+    })
+})
+
 
 async function createBusiness() {
     const salt = await bcrypt.genSalt(10);
@@ -72,7 +85,7 @@ async function createBusiness() {
     BusinessService.createBusiness({
         name: "Petar",
         uId: "Petar",
-        color: "white",
+        color: "#90d977",
         password: hashedPassword,
         email: "email",
     }).catch((err) => {
