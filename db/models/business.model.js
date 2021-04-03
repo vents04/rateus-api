@@ -38,10 +38,6 @@ const businessSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    totalReviews: {
-        type: Number,
-        default: 0
-    }
 })
 
 const Business = mongoose.model("Business", businessSchema);
