@@ -29,6 +29,19 @@ const questionnaireValidation = data => {
     return schema.validate(data);
 }
 
+const createAnswerValidation = data => {
+    const schema = Joi.object({
+        answers: Joi.array().items({
+            answer: Joi.string().required(),
+            input: Joi.number().required()
+        }),
+        questionnaireId: mongoose.Types.ObjectId
+    })
+    return schema.validate(data);
+}
+
 module.exports.createWaitlistValidation = createWaitlistValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.questionnaireValidation = questionnaireValidation;
+module.exports.questionnaireValidation = questionnaireValidation;
+module.exports.createAnswerValidation = createAnswerValidation;
