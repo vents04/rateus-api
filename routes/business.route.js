@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 
 const ErrorHandler = new(require('../services/error-handling.service').ErrorHandler)();
 const BusinessService = new(require('../services/business.service').BusinessService)();
+const QuestionnaireService = new(require('../services/questionnaire.service').QuestionnaireService)();
+const AnswerService = new(require('../services/answer.service').AnswerService)();
 
 const { JWT_SECRET } = require('../global');
 
@@ -78,7 +80,42 @@ router.get('/', authenticate, (req, res) => {
     })
 })
 
+router.get('/dashboard', authenticate, (req, res) => {
+    QuestionnaireService.getQuestionnaires({ businessId: req.business._id}).then((questionnaires) => {
+        console.log(questionnaires);
+        let totalAnswers = 0, lastWeekAnswers = 0;
+        for (let index = 0; index < questionnaires.length; index++) {
+            AnswerService.getAnswers({ questionnaireId: questionnaires[i]._id }).then((answers) => {
+                totalAnswers += answers.length;
+                for (let j = 0; j < answers.length; j++) {
+                    if(new Date(answers[j].dt).getTime() + 604800000 >= new Date().getTime()) {
+                        lastWeekAnswers++;
+                    }   
+                }
+            });
+        }
+
+        res.status(200).send({
+            totalResponses: totalAnswers,
+            lastWeekResponses: lastWeekAnswers,
+            questionnaires: questionnaires.length
+        })
+    }).catch((err) => {
+        return ErrorHandler.returnError(err, res);
+    });
+})
+
 router.get('/:id/color', (req, res) => {
+    BusinessService.getBusiness({_id: req.params.id}).then((business) => {
+        res.status(200).send({
+            color: business.color
+        })
+    }).catch((err) => {
+        return ErrorHandler.returnError(err, res);
+    })
+})
+
+router.put('/:id/color', (req, res) => {
     BusinessService.getBusiness({_id: req.params.id}).then((business) => {
         res.status(200).send({
             color: business.color
