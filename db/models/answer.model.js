@@ -1,14 +1,25 @@
 const mongoose = require('mongoose');
 
 const answerSchema = new mongoose.Schema({
-    answer: {
-      type: String,
-      required: true,
+    questionnaireId:{
+        type: mongoose.Types.ObjectId,
+        required: true
     },
-    input: {
-      type: Nsumber,
-      required: true,
-    }
+    dt:{
+        type: Date,
+        default: Date.now
+    },
+    answers:[
+    {
+        answer: {
+            type: mongoose.Types.ObjectId,
+            required: true
+        },
+        input: {
+            type: Number,
+            required: true
+        }
+    }]
 })
 
 const Answer = mongoose.model("Answer", answerSchema);
