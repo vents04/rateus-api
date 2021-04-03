@@ -121,6 +121,16 @@ router.get('/:id/color', (req, res) => {
 })
 
 router.put('/color', authenticate, (req, res) => {
+    if(req.body.color) {
+        console.log("Here");
+        if(req.body.color[0] != '#' || req.body.color.length != 7) {
+            return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': "Invalid color" }, res);
+        }
+    }
+    else {
+        return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': "Invalid color" }, res);
+    }
+
     BusinessService.updateBusiness({_id: req.business._id}, { color: req.body.color }).then((business) => {
         res.status(200).send({
             business: business
