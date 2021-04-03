@@ -19,4 +19,14 @@ router.get('/:id', (req, res) => {
     }
 });
 
+router.put('/', authenticate, (req, res) => {
+    QuestionnaireService.updateBusiness({_id: req.business._id}, { color: req.body.color }).then((business) => {
+        res.status(200).send({
+            business: business
+        })
+    }).catch((err) => {
+        return ErrorHandler.returnError(err, res);
+    })
+})
+
 module.exports = router;
