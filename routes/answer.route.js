@@ -50,7 +50,8 @@ router.get('/by-questionnaire-id/:id', authenticate, (req, res) => {
             }
             AnswerService.getAnswers({questionnaireId: req.params.id}).then((answers) => {
                 res.status(200).send({
-                    answers: answers
+                    answers: answers,
+                    questionsCount: questionnaire.questions.length
                 })
             })
         }).catch((err) => {
