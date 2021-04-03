@@ -30,7 +30,8 @@ app.use(bodyParser.json({ limit: '100MB' })).use(express.urlencoded({ extended: 
 const {
     waitlist,
     business,
-    questionnaire
+    questionnaire,
+    answer
 } = require('./routes/all-routes.import');
 
 app.use('/waitlist', waitlist);
