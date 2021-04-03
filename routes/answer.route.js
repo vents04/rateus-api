@@ -1,6 +1,7 @@
 const express = require('express');
 const authenticate = require('../middlewares/authenticate');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 const ErrorHandler = new(require('../services/error-handling.service').ErrorHandler)();
 const AnswerService = new(require('../services/answer.service').AnswerService)();
@@ -25,6 +26,20 @@ router.post('/', authenticate, (req, res) => {
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);
     });
+});
+
+router.get('/:id', (req, res) => {
+    if(mongoose.Types.ObjectId.isValid(req.params.id)) {
+        AnswerService.getAnswer({_id: req.params.id}).then((answer) => {
+            res.status(200).send({
+                answer: answer
+            })
+        }).catch((err) => {
+            return ErrorHandler.returnError(err, res);
+        })
+    } else {
+        return ErrorHandler.returnError({'errorCode': 400, 'errorMessage': 'Invalid answer id'}, res);
+    }
 });
 
 module.exports = router;
