@@ -14,18 +14,18 @@ router.post('/', authenticate, (req, res) => {
     if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
 
     QuestionnaireService.getQuestionnaire({ _id: req.body.questionnaireId }).then((questionnaire) => {
-        if(questionnaire == null) {
+        if(questionnaire != null) {
+            AnswerService.createAnswer(req.body).then((answer) => {
+                res.status(200).send({
+                    answer: answer
+                })
+            }).catch((err) => {
+                return ErrorHandler.returnError(err, res);
+            });
+        } else {
             return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': "No such questionnaire." }, res);
         }
     })
-
-    AnswerService.createAnswer(req.body).then((answer) => {
-        res.status(200).send({
-            answer: answer
-        })
-    }).catch((err) => {
-        return ErrorHandler.returnError(err, res);
-    });
 });
 
 router.get('/:id', (req, res) => {
