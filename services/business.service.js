@@ -31,10 +31,10 @@ class BusinessService {
         })
     }
 
-    updateBusiness(data) {
+    updateBusiness(findData, updateData) {
         return new Promise((resolve, reject) => {
             try {
-                Business.updateOne(data).then((business) => {
+                Business.findOneAndUpdate(findData, updateData).then((business) => {
                     resolve(business);
                 });
             } catch (err) {
