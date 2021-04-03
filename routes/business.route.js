@@ -82,22 +82,27 @@ router.get('/', authenticate, (req, res) => {
 
 router.get('/dashboard', authenticate, (req, res) => {
     QuestionnaireService.getQuestionnaires({ businessId: req.business._id}).then((questionnaires) => {
-        let totalAnswers = 0, lastWeekAnswers = 0;
+        let totalAnswers = 0, lasWeekAnswers = 0, tempAnswers = 0;
+        let questionnairesResult = [];
         for (let index = 0; index < questionnaires.length; index++) {
             AnswerService.getAnswers({ questionnaireId: questionnaires[index]._id }).then((answers) => {
-                totalAnswers += answers.length;
+                tempAnswers += answers.length;
                 for (let j = 0; j < answers.length; j++) {
                     if(new Date(answers[j].dt).getTime() + 604800000 >= new Date().getTime()) {
                         lastWeekAnswers++;
                     }   
                 }
             });
+            questionnairesResult.push({ title: questionnaires[index].title, responses: tempAnswers });
+            totalAnswers += tempAnswers;
+            tempAnswers = 0;
         }
 
         res.status(200).send({
             totalResponses: totalAnswers,
             lastWeekResponses: lastWeekAnswers,
-            questionnaires: questionnaires.length
+            questionnairesCount: questionnaires.length,
+            questionnaires: questionnairesResult
         })
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);
