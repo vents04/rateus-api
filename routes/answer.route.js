@@ -1,4 +1,5 @@
 const express = require('express');
+const authenticate = require('../middlewares/authenticate');
 const router = express.Router();
 
 const ErrorHandler = new(require('../services/error-handling.service').ErrorHandler)();
@@ -7,7 +8,7 @@ const QuestionnaireService = new(require('../services/questionnaire.service').Qu
 
 const { createAnswerValidation } = require('../validation/validation');
 
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
     const { error } = createAnswerValidation(req.body);
     if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
 
