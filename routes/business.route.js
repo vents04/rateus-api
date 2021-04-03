@@ -115,10 +115,10 @@ router.get('/:id/color', (req, res) => {
     })
 })
 
-router.put('/:id/color', (req, res) => {
-    BusinessService.getBusiness({_id: req.params.id}).then((business) => {
+router.put('/color', authenticate, (req, res) => {
+    BusinessService.updateBusiness({_id: req.business._id}, { color: req.body.color }).then((business) => {
         res.status(200).send({
-            color: business.color
+            business: business
         })
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);
