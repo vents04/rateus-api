@@ -10,7 +10,7 @@ const createWaitlistValidation = data => {
 
 const loginValidation = data => {
     const schema = Joi.object({
-        emailOrPhone: Joi.string().required(),
+        email: Joi.string().required(),
         password: Joi.string().required()
     });
     return schema.validate(data);

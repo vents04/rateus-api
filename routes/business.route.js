@@ -31,6 +31,41 @@ router.post('/login', (req, res) => {
     });
 });
 
+router.post('/check-token', (req, res) => {
+    const token = req.header("x-auth-token");
+    if (token) {
+        try {
+            const verified = jwt.verify(token, JWT_SECRET);
+            if (verified) {
+                try {
+                    BusinessService.getBusiness({ _id: verified._id }).then((business) => {
+                        res.status(200).send({
+                            'valid': (business != null && new Date(verified.dt).getTime() > business.lastPasswordReset.getTime())
+                        })
+                    }).catch((err) => {
+                        return ErrorHandler.returnError(err, res);
+                    });
+                } catch (err) {
+                    return ErrorHandler.returnError({ 'errorCode': 500 }, res);
+                }
+            } else {
+                res.status(200).send({
+                    'valid': false
+                })
+            }
+        } catch (err) {
+            res.status(200).send({
+                'valid': false
+            })
+        }
+    } else {
+        res.status(200).send({
+            'valid': false
+        })
+    }
+});
+
+
 async function createBusiness() {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash("Password", salt);
@@ -39,7 +74,7 @@ async function createBusiness() {
         uId: "Petar",
         color: "white",
         password: hashedPassword,
-        emailOrPhone: "email"
+        email: "email",
     }).catch((err) => {
         console.log(err);
     }).then((user) => {
@@ -59,7 +94,5 @@ async function createBusiness() {
         console.log(err);
     });
 }
-
-createBusiness()
 
 module.exports = router;
