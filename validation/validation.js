@@ -1,4 +1,5 @@
 const Joi = require('@hapi/joi');
+const mongoose = require('mongoose');
 
 const createWaitlistValidation = data => {
     const schema = Joi.object({
@@ -16,5 +17,18 @@ const loginValidation = data => {
     return schema.validate(data);
 }
 
+const questionnaireValiation = data => {
+    const schema = Joi.object({
+        questions: Joi.array().items({
+            title: Joi.string().required(),
+            input: Joi.number().required()
+        }),
+        title: Joi.string().required(),
+        _id: mongoose.Types.ObjectId
+    })
+    return schema.validate(data);
+}
+
 module.exports.createWaitlistValidation = createWaitlistValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.questionnaireValiation = questionnaireValiation;
