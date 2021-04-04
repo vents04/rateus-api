@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoDb = require('./db/mongoose');
+const helmet = require("helmet");
 const { ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_KEEPER } = require('./global');
 
 const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_KEEPER];
@@ -26,6 +27,8 @@ app.use(function(req, res, next) {
 });
 
 app.use(bodyParser.json({ limit: '100MB' })).use(express.urlencoded({ extended: true }));
+
+app.use(helmet());
 
 const {
     waitlist,
