@@ -6,13 +6,13 @@
         "slogan": "Get clients' feedback right in your store.",
         "applyButton": "Apply",
         "description": "or ask your questions to support@uploy.app",
-        "primaryText": "Log in your Uploy account"
+        "primaryText": "Log in your Uploy business account"
     },
     "apply": {
         "title": "Apply",
         "inputs": [
             {
-                "title": "Address",
+                "title": "Business address",
                 "placeholder": "Click here to type"
             },
             {
@@ -56,7 +56,7 @@
                 "title": "responses last week"
             },
             {
-                "title": "questionnaire"
+                "title": "questionnaires"
             }
         ],
         "questionnaires": {

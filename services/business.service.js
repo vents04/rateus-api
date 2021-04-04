@@ -6,7 +6,7 @@ class BusinessService {
         return new Promise((resolve, reject) => {
             try {
                 new Business(data).save().then(async (business) => {
-                    await QuestionnaireService.createQuestionnaire({title: `${business.name}'s questionnaire`, businessId: business._id});
+                    await QuestionnaireService.createQuestionnaire({title: `${business.name}`, businessId: business._id});
                     resolve(business);
                 });
             } catch (err) {

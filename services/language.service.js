@@ -3,8 +3,8 @@ const fs = require('fs');
 class LanguageService {
     getLanguageData(language, page) {
         return new Promise((resolve, reject) => {
-            if (fs.existsSync(`../languages/${language}.json`)) {
-                fs.readFile(`../languages/${language}.json`, function (err, data) {
+            if (fs.existsSync(`./languages/${language}.json`)) {
+                fs.readFile(`./languages/${language}.json`, function (err, data) {
                     if (err) {
                         reject({
                             'errorCode': 500
