@@ -142,8 +142,9 @@ router.put('/color', authenticate, (req, res) => {
     })
 })
 
-app.post('/signup', (req, res) => {
+router.post('/signup', (req, res) => {
     createBusiness();
+    res.sendStatus(200);
 })
 
 async function createBusiness() {
@@ -155,8 +156,6 @@ async function createBusiness() {
         color: "#90d977",
         password: hashedPassword,
         email: "test@test.com",
-    }).catch((err) => {
-        console.log(err);
     }).then((user) => {
         
     }).catch((err) => {
