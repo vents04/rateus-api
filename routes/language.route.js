@@ -6,7 +6,6 @@ const LanguageService = new(require('../services/language.service').LanguageServ
 
 router.get('/:language/:page', (req, res) => {
     LanguageService.getLanguageData(req.params.language, req.params.page).then((languageData) => {
-        console.log(languageData)
         res.status(200).send({
             languageData: languageData
         })

@@ -10,7 +10,6 @@ class LanguageService {
                             'errorCode': 500
                         })
                     } else {
-                        console.log(JSON.parse(data));
                         const pageObject = JSON.parse(data)[page];
                         resolve(pageObject);
                     }
