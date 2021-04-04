@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoDb = require('./db/mongoose');
 const helmet = require("helmet");
-const { ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_KEEPER } = require('./global');
+const { ROOT_URL, ROOT_URL_FRONTEND } = require('./global');
 
-const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_KEEPER];
+const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND];
 
 app.use(cors({
     origin: function(origin, callback) {
@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(bodyParser.json({ limit: '100MB' })).use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50MB' })).use(express.urlencoded({ extended: true }));
 
 app.use(helmet());
 
@@ -43,6 +43,6 @@ app.use('/questionnaire', questionnaire);
 app.use('/answer', answer);
 app.use('/language', language);
 
-app.listen(process.env.PORT || 8080, () => {
-    console.log("Server listening on port 8080");
+app.listen(process.env.PORT || 8081, () => {
+    console.log("Server listening on port 8081");
 });
