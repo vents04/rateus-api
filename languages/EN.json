@@ -1,0 +1,122 @@
+{
+    "home": {
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "beta": "BETA",
+        "slogan": "Get clients' feedback right in your store.",
+        "applyButton": "Apply",
+        "description": "or ask your questions to support@uploy.app",
+        "primaryText": "Log in your Uploy account"
+    },
+    "apply": {
+        "title": "Apply",
+        "inputs": [
+            {
+                "title": "Address",
+                "placeholder": "Click here to type"
+            },
+            {
+                "title": "Email / Phone number",
+                "placeholder": "Click here to type"
+            }
+        ],
+        "description": "When you submit your application a person from our team will contact you to tailor the best solution for you and your business.",
+        "submitButton": "Submit",
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "error": "There was an error submitting your application. Please try again or call us on +359 882 764 107",
+        "success": "Successfully submitted! You will be redirected to home."
+    },
+    "login": {
+        "title": "Login",
+        "inputs": [
+            {
+                "title": "Email",
+                "placeholder": "Click here to type"
+            },
+            {
+                "title": "Password",
+                "placeholder": "Click here to type"
+            }
+        ],
+        "continueButton": "Continue",
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel"
+    },
+    "dashboard": {
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "logOutButton": "Log out",
+        "info": ["If you have any questions, you can contact our support at", "support@uploy.app", "or call", "+359 882 764 107"],
+        "stats": [
+            {
+                "title": "responses in total"
+            },
+            {
+                "title": "responses last week"
+            },
+            {
+                "title": "questionnaire"
+            }
+        ],
+        "questionnaires": {
+            "title": "Questionnaires",
+            "editButton": "Edit",
+            "responses": "Responses"
+        },
+        "answers": {
+            "title": "Answers to",
+            "closeAnswersButton": "Close answers",
+            "table": ["№", "Date and time"]
+        },
+        "colorDropdown": {
+            "title": "Select brand color",
+            "description": "When people answer your questionnaires the page will have this brand color on all elements where it should be placed.",
+            "cancelButton": "Cancel"
+        },
+        "warning": "We recommend previewing the answers on a larger screen."
+    },
+    "answer-questionnaire": {
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "pusher": "Help by sending your answers",
+        "placeholder": "Type here",
+        "previousButton": "Previous",
+        "nextButton": "Next",
+        "finishAndSubmitButton": "Finish and submit",
+        "error": "There was an error submitting your answers. Please try again or contact support at support@support@uploy.app or by calling +359 882 764 107",
+        "notFound": "Questionnaire not found! If you think this is an error please contact us at support@uploy.app or by calling +359 882 764 107",
+        "successTitle": "Success",
+        "successDescription": "We have sent your answers. Thank you for your time.",
+        "currentValue": "Current value:"
+    },
+    "edit-questionnaire": {
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "placeholder": "Type here",
+        "inputs": [
+            {
+                "title": "Questionnaire title"
+            },
+            {
+                "title": "What is your question?"
+            },
+            {
+                "title": "How will the client respond?",
+                "options": [
+                    {
+                        "title": "With text"
+                    },
+                    {
+                        "title": "With rating from 0 to 10"
+                    }
+                ]
+            }
+        ],
+        "deleteQuestionButton": "Delete this question",
+        "finishAndSubmitButton": "Finish and submit",
+        "notFound": "Questionnaire not found! If you think this is an error please contact us at support@uploy.app or by calling +359 882 764 107",
+        "error": "There was an error updating your questionnaire. Try again or contact support at support@uploy.app or by calling +359 882 764 107",
+        "success": "Successfully updated the questionnaire! The window will reload in 4s."
+    }
+}

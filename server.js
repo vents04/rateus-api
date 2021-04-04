@@ -31,13 +31,15 @@ const {
     waitlist,
     business,
     questionnaire,
-    answer
+    answer,
+    language,
 } = require('./routes/all-routes.import');
 
 app.use('/waitlist', waitlist);
 app.use('/business', business);
 app.use('/questionnaire', questionnaire);
 app.use('/answer', answer);
+app.use('/language', language);
 
 app.listen(process.env.PORT || 8080, () => {
     console.log("Server listening on port 8080");
