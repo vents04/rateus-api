@@ -142,30 +142,23 @@ router.put('/color', authenticate, (req, res) => {
     })
 })
 
+app.post('/signup', (req, res) => {
+    createBusiness();
+})
+
 async function createBusiness() {
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash("Password", salt);
+    const hashedPassword = await bcrypt.hash("password", salt);
     BusinessService.createBusiness({
-        name: "Petar",
-        uId: "Petar",
+        name: "Test user",
+        uId: "test",
         color: "#90d977",
         password: hashedPassword,
-        email: "email",
+        email: "test@test.com",
     }).catch((err) => {
         console.log(err);
     }).then((user) => {
-        let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        const charactersLength = characters.length;
-        for (let index = 0; index < 40; index++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-
-        /*const codeVerification = new VerifyEmail({
-            code: result,
-            expiryDate: new Date().getTime(),
-            user: user._id
-        });*/
+        
     }).catch((err) => {
         console.log(err);
     });
