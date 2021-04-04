@@ -22,7 +22,6 @@ app.use(cors({
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,auth-token');
     res.setHeader('Access-Control-Expose-Headers', '*');
-    res.setHeader('X-Powered-By', 'Hello, world!');
     next();
 });
 
