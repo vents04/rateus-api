@@ -32,7 +32,7 @@ const questionnaireValidation = data => {
 const createAnswerValidation = data => {
     const schema = Joi.object({
         answers: Joi.array().items({
-            answer: Joi.string().empty().required(),
+            answer: Joi.string().allow(''),
             input: Joi.number().required()
         }),
         questionnaireId: mongoose.Types.ObjectId

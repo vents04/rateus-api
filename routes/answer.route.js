@@ -9,7 +9,7 @@ const QuestionnaireService = new(require('../services/questionnaire.service').Qu
 
 const { createAnswerValidation } = require('../validation/validation');
 
-router.post('/', authenticate, (req, res) => {
+router.post('/', (req, res) => {
     const { error } = createAnswerValidation(req.body);
     if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
 
