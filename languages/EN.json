@@ -41,7 +41,8 @@
         ],
         "continueButton": "Continue",
         "dropdownTitle": "Choose a language",
-        "cancelButton": "Cancel"
+        "cancelButton": "Cancel",
+        "description": ["By applying you agree to our", "Privacy policy", ",", "Cookie policy", "and", "Terms and conditions"]
     },
     "dashboard": {
         "dropdownTitle": "Choose a language",
