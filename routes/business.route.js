@@ -149,14 +149,22 @@ router.post('/signup', async (req, res) => {
     if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash("password", res);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
     req.body.password = hashedPassword;
 
-    BusinessService.createBusiness(req.body).then((business) => {
-        res.status(200).send({
-            business: business
-        })
+    BusinessService.getBusiness({ email: req.body.email }).then((business) => {
+        if(!business) {
+            BusinessService.createBusiness(req.body).then((business) => {
+                res.status(200).send({
+                    business: business
+                })
+            }).catch((err) => {
+                return ErrorHandler.returnError(err, res);
+            });
+        } else {
+            return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'An account with that email already exists!'}, res);
+        }
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);
     });

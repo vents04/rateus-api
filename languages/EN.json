@@ -44,7 +44,33 @@
         "cancelButton": "Cancel"
     },
     "signup": {
-        "description": ["By signing up you agree to our", "Privacy policy", ",", "Cookie policy", "and", "Terms and conditions"]
+        "title": "Signup",
+        "inputs": [
+            {
+                "title": "Business name",
+                "placeholder": "Click here to type"
+            },
+            {
+                "title": "Email",
+                "placeholder": "Click here to type"
+            },
+            {
+                "title": "Phone number",
+                "placeholder": "Click here to type"
+            },
+            {
+                "title": "Password",
+                "placeholder": "Click here to type"
+            }
+        ],
+        "continueButton": "Continue",
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "description": ["By signing up you agree to our", "Privacy policy", ",", "Cookie policy", "and", "Terms and conditions"],
+        "success": "Account created successfully! You will be redirected to login.",
+        "passwordError": "You password should be at least 8 characters",
+        "emailExistsError": "An account with that email already exists",
+        "emailInvalidError": "Email is invalid"
     },
     "dashboard": {
         "dropdownTitle": "Choose a language",
