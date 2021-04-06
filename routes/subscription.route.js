@@ -6,10 +6,8 @@ const ErrorHandler = new(require('../services/error-handling.service').ErrorHand
 const SubscriptionService = new(require('../services/subscription.service').SubscriptionService)();
 
 router.get('/active-subscription', authenticate, (req, res) => {
-    SubscriptionService.getActiveSubscription({businessId: req.business._id}).then((activeSubscription) => {
-        res.status(200).send({
-            activeSubscription: activeSubscription
-        })
+    SubscriptionService.getActiveSubscription({businessId: req.business._id}).then((response) => {
+        res.status(200).send(response)
     }).catch((err) => {
         return ErrorHandler.handleError(err, res);
     })
