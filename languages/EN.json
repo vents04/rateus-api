@@ -103,7 +103,9 @@
             "description": "When people answer your questionnaires the page will have this brand color on all elements where it should be placed.",
             "cancelButton": "Cancel"
         },
-        "warning": "We recommend previewing the answers on a larger screen."
+        "warning": "We recommend previewing the answers on a larger screen.",
+        "pendingMessage": "Your account is pending a quick review from our team. After we verify it, you can choose a subscription plan.",
+        "blockedMessage": "Your account has been blocked."
     },
     "answer-questionnaire": {
         "dropdownTitle": "Choose a language",
