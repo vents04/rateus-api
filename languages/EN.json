@@ -149,5 +149,10 @@
         "notFound": "Questionnaire not found! If you think this is an error please contact us at support@uploy.app or by calling +359 882 764 107",
         "error": "There was an error updating your questionnaire. Try again or contact support at support@uploy.app or by calling +359 882 764 107",
         "success": "Successfully updated the questionnaire! The window will reload in 4s."
+    },
+    "subscriptions": {
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "logOutButton": "Log out"
     }
 }
