@@ -35,6 +35,7 @@ const {
     questionnaire,
     answer,
     language,
+    subscription
 } = require('./routes/all-routes.import');
 
 app.use('/waitlist', waitlist);
@@ -42,6 +43,7 @@ app.use('/business', business);
 app.use('/questionnaire', questionnaire);
 app.use('/answer', answer);
 app.use('/language', language);
+app.use('/subscription', subscription);
 
 app.listen(process.env.PORT || 8081, () => {
     console.log("Server listening on port 8081");
