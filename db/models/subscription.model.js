@@ -10,8 +10,12 @@ const subscriptionSchema = new mongoose.Schema({
         required: true
     },
     dt: {
-        type: Number,
+        type: Date,
         default: Date.now
+    },
+    from: {
+        type: String,
+        required: true
     }
 })
 
