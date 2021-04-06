@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
 
 const businessSchema = new mongoose.Schema({
-    uId: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    name:{
+    name: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true,
         minLength: 1,
@@ -26,19 +21,23 @@ const businessSchema = new mongoose.Schema({
         required: true,
         minlength: 8,
     },
-    color:{
+    color: {
         type: String,
-        required: true
+        default: "#90d977"
     },
-    accountCreation:{
+    accountCreation: {
         type: Date,
         default: Date.now
     },
-    lastPasswordReset:{
+    lastPasswordReset: {
         type: Date,
         default: Date.now
     },
+    status: {
+        type: Number,
+        default: 0
+    }
 })
 
 const Business = mongoose.model("Business", businessSchema);
-module.exports = {Business}
+module.exports = { Business }

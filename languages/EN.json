@@ -4,9 +4,9 @@
         "cancelButton": "Cancel",
         "beta": "BETA",
         "slogan": "Get clients' feedback right in your store.",
-        "applyButton": "Apply",
+        "signupButton": "Signup",
         "description": "or ask your questions to support@uploy.app",
-        "primaryText": "Log in your Uploy business account"
+        "primaryText": "Log in your Rate us business account"
     },
     "apply": {
         "title": "Apply",
@@ -41,8 +41,10 @@
         ],
         "continueButton": "Continue",
         "dropdownTitle": "Choose a language",
-        "cancelButton": "Cancel",
-        "description": ["By applying you agree to our", "Privacy policy", ",", "Cookie policy", "and", "Terms and conditions"]
+        "cancelButton": "Cancel"
+    },
+    "signup": {
+        "description": ["By signing up you agree to our", "Privacy policy", ",", "Cookie policy", "and", "Terms and conditions"]
     },
     "dashboard": {
         "dropdownTitle": "Choose a language",

@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const { Business } = require('../db/models/business.model');
+
 const ErrorHandler = new(require('../services/error-handling.service').ErrorHandler)();
 const BusinessService = new(require('../services/business.service').BusinessService)();
 const QuestionnaireService = new(require('../services/questionnaire.service').QuestionnaireService)();
@@ -10,7 +12,7 @@ const AnswerService = new(require('../services/answer.service').AnswerService)()
 
 const { JWT_SECRET } = require('../global');
 
-const { loginValidation } = require('../validation/validation');
+const { loginValidation, signupValidation } = require('../validation/validation');
 
 const authenticate = require('../middlewares/authenticate');
 
@@ -142,25 +144,22 @@ router.put('/color', authenticate, (req, res) => {
     })
 })
 
-router.post('/signup', (req, res) => {
-    createBusiness();
-    res.sendStatus(200);
-})
+router.post('/signup', async (req, res) => {
+    const { error } = signupValidation(req.body);
+    if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
 
-async function createBusiness() {
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash("password", salt);
-    BusinessService.createBusiness({
-        name: "Test user",
-        uId: "test",
-        color: "#90d977",
-        password: hashedPassword,
-        email: "test@test.com",
-    }).then((user) => {
-        
+    const hashedPassword = await bcrypt.hash("password", res);
+
+    req.body.password = hashedPassword;
+
+    BusinessService.createBusiness(req.body).then((business) => {
+        res.status(200).send({
+            business: business
+        })
     }).catch((err) => {
-        console.log(err);
+        return ErrorHandler.returnError(err, res);
     });
-}
+})
 
 module.exports = router;

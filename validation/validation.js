@@ -17,6 +17,16 @@ const loginValidation = data => {
     return schema.validate(data);
 }
 
+const signupValidation = data => {
+    const schema = Joi.object({
+        name: Joi.string().required(),
+        email: Joi.email().required(),
+        phone: Joi.string().required(),
+        password: Joi.string().required().min(8)
+    });
+    return schema.validate(data);
+}
+
 const questionnaireValidation = data => {
     const schema = Joi.object({
         questions: Joi.array().items({
@@ -45,3 +55,4 @@ module.exports.loginValidation = loginValidation;
 module.exports.questionnaireValidation = questionnaireValidation;
 module.exports.questionnaireValidation = questionnaireValidation;
 module.exports.createAnswerValidation = createAnswerValidation;
+module.exports.signupValidation = signupValidation;
