@@ -26,7 +26,6 @@ class SubscriptionService {
                                         await new Promise((resolve, reject) => {
                                             PaypalService.getPlan(activePaypalSubscription.plan_id).then((paypalPlan) => {
                                                 plan = paypalPlan;
-                                                console.log(plan)
                                                 resolve();
                                             })
                                         })
@@ -34,13 +33,11 @@ class SubscriptionService {
                                         message = "You subscription was canceled, suspended or has expired. You can now active a new one."
                                         canIssueNewSubscription = true;
                                     } else {
-                                        console.log(subscription.subscriptionId);
                                         Subscription.findOneAndDelete({subscriptionId: subscription.subscriptionId}).then(() => {
 
                                         });
                                     }
                                 }
-                                console.log("RESOLVE")
                                 resolve();
                             }).catch((err) => {
                                 reject(err);
