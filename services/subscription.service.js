@@ -9,6 +9,8 @@ class SubscriptionService {
             try {
                 Subscription.find(data).then(async (subscriptions) => {
                     let activeSubscription = null;
+                    let activePaypalSubscription = null;
+                    let plan = null;
                     let message = null;
                     let canIssueNewSubscription = false;
 
@@ -16,13 +18,30 @@ class SubscriptionService {
 
                     for (let subscription of subscriptions) {
                         await new Promise((resolve, reject) => {
-                            PaypalService.getSubscription(subscription.subscriptionId).then((paypalSubscription) => {
-                                if (paypalSubscription.status == "ACTIVE" || subscription.status == "APPROVED") {
-                                    activeSubscription = subscription;
-                                } else if (paypalSubscription.status == "SUSPENDED" || subscription.status == "CANCELED" || subscription.status == "EXPIRED") {
-                                    message = "You subscription was canceled, suspended or has expired. You can now active a new one."
-                                    canIssueNewSubscription = true;
+                            PaypalService.getSubscription(subscription.subscriptionId).then(async (paypalSubscription) => {
+                                if (paypalSubscription) {
+                                    if (paypalSubscription.status == "ACTIVE" || subscription.status == "APPROVED") {
+                                        activeSubscription = subscription;
+                                        activePaypalSubscription = paypalSubscription;
+                                        await new Promise((resolve, reject) => {
+                                            PaypalService.getPlan(activePaypalSubscription.plan_id).then((paypalPlan) => {
+                                                plan = paypalPlan;
+                                                console.log(plan)
+                                                resolve();
+                                            })
+                                        })
+                                    } else if (paypalSubscription.status == "SUSPENDED" || subscription.status == "CANCELED" || subscription.status == "EXPIRED") {
+                                        message = "You subscription was canceled, suspended or has expired. You can now active a new one."
+                                        canIssueNewSubscription = true;
+                                    } else {
+                                        console.log(subscription.subscriptionId);
+                                        Subscription.findOneAndDelete({subscriptionId: subscription.subscriptionId}).then(() => {
+
+                                        });
+                                    }
                                 }
+                                console.log("RESOLVE")
+                                resolve();
                             }).catch((err) => {
                                 reject(err);
                             });
@@ -31,6 +50,8 @@ class SubscriptionService {
 
                     resolve({
                         activeSubscription: activeSubscription,
+                        activePaypalSubscription: activePaypalSubscription,
+                        plan: plan,
                         message: message,
                         canIssueNewSubscription: canIssueNewSubscription
                     });
@@ -50,6 +71,7 @@ class SubscriptionService {
                     if(response.canIssueNewSubscription) {
                         BusinessService.getBusiness({_id: businessId}).then((business) => {
                             PaypalService.createSubscription(planId, business.email).then((paypalSubscription) => {
+                                console.log(paypalSubscription);
                                 var tomorrow = new Date();
                                 tomorrow.setDate(tomorrow.getDate() + 1);
                                 tomorrow = tomorrow.toISOString();

@@ -1,6 +1,10 @@
 const axios = require('axios');
 const { PAYPAL_CLIENT_ID, PAYPAL_SECRET, ROOT_URL_FRONTEND } = require('../global');
 
+const { Subscription } = require('../db/models/subscription.model');
+
+const BusinessService = new(require('./business.service').BusinessService)();
+
 class PaypalService {
     getAccessToken() {
         return new Promise((resolve, reject) => {
@@ -40,6 +44,16 @@ class PaypalService {
                         }
                     }).then((response) => {
                         resolve(response.data);
+                    }).catch((err) => {
+                        if (err.response.status == 404) {
+                            Subscription.findOneAndDelete({subscriptionId: subscriptionId}).then((deletedObject) => {
+                                resolve(null);
+                            })
+                        } else {
+                            reject({
+                                'errorCode': err.response.status
+                            })
+                        }
                     });
                 } catch (err) {
                     reject({
@@ -86,6 +100,10 @@ class PaypalService {
                         },
                     }).then((response) => {
                         resolve(response.data);
+                    }).catch((err) => {
+                        reject({
+                            'errorCode': err.response.status
+                        })
                     });
                 } catch (err) {
                     reject({
@@ -96,6 +114,33 @@ class PaypalService {
                 reject(err);
             });
         });
+    }
+
+    getPlan(planId) {
+        return new Promise((resolve, reject) => {
+            this.getAccessToken().then((accessToken) => { 
+                try {
+                    axios.get(`https://api-m.sandbox.paypal.com/v1/billing/plans/${planId}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${accessToken}`
+                        }
+                    }).then((response) => {
+                        resolve(response.data);
+                    }).catch((err) => {
+                        reject({
+                            'errorCode': err.response.status
+                        })
+                    });
+                } catch (err) {
+                    reject({
+                        'errorCode': 500
+                    });
+                }
+            }).catch((err) => {
+                reject(err);
+            });
+        })
     }
 }
 
