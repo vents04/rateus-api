@@ -9,6 +9,7 @@ const ErrorHandler = new(require('../services/error-handling.service').ErrorHand
 const BusinessService = new(require('../services/business.service').BusinessService)();
 const QuestionnaireService = new(require('../services/questionnaire.service').QuestionnaireService)();
 const AnswerService = new(require('../services/answer.service').AnswerService)();
+const SubscriptionService = new(require('../services/subscription.service').SubscriptionService)();
 
 const { JWT_SECRET } = require('../global');
 
@@ -86,6 +87,7 @@ router.get('/dashboard', authenticate, (req, res) => {
     QuestionnaireService.getQuestionnaires({ businessId: req.business._id}).then(async (questionnaires) => {
         let totalAnswers = 0, lastWeekAnswers = 0, tempAnswers = 0;
         let questionnairesResult = [];
+        let activeSubscription = null;
         for (let index = 0; index < questionnaires.length; index++) {
             await new Promise((resolve, reject) => { 
                 AnswerService.getAnswers({ questionnaireId: questionnaires[index]._id }).then((answers) => {
@@ -104,11 +106,19 @@ router.get('/dashboard', authenticate, (req, res) => {
             tempAnswers = 0;
         }
 
+        await new Promise((resolve, reject) => {
+            SubscriptionService.getActiveSubscription({businessId: req.business._id}).then((activeSubscriptionResponse) => {
+                activeSubscription = activeSubscriptionResponse;
+                resolve();
+            })
+        })
+
         res.status(200).send({
             totalResponses: totalAnswers,
             lastWeekResponses: lastWeekAnswers,
             questionnairesCount: questionnaires.length,
-            questionnaires: questionnairesResult
+            questionnaires: questionnairesResult,
+            activeSubscription: activeSubscription
         })
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);

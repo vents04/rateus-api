@@ -57,6 +57,13 @@ const subscriptionValidation = data => {
     return schema.validate(data);
 }
 
+const questionnaireCreationValidation = data => {
+    const schema = Joi.object({
+        title: Joi.string().required(),
+    })
+    return schema.validate(data);
+}
+
 module.exports.createWaitlistValidation = createWaitlistValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.questionnaireValidation = questionnaireValidation;
@@ -64,3 +71,4 @@ module.exports.questionnaireValidation = questionnaireValidation;
 module.exports.createAnswerValidation = createAnswerValidation;
 module.exports.signupValidation = signupValidation;
 module.exports.subscriptionValidation = subscriptionValidation;
+module.exports.questionnaireCreationValidation = questionnaireCreationValidation;

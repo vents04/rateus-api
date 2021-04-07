@@ -4,11 +4,23 @@ const mongoose = require('mongoose');
 
 const ErrorHandler = new(require('../services/error-handling.service').ErrorHandler)();
 const QuestionnaireService = new(require('../services/questionnaire.service').QuestionnaireService)();
-const BusinessService = new(require('../services/business.service').BusinessService)();
 
-const { questionnaireValidation } = require('../validation/validation');
+const { questionnaireValidation, questionnaireCreationValidation } = require('../validation/validation');
 
 const authenticate = require('../middlewares/authenticate');
+
+router.post('/', authenticate, (req, res) => {
+    const { error } = questionnaireCreationValidation(req.body);
+    if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
+
+    QuestionnaireService.createQuestionnaire({title: req.body.title, businessId: req.business._id}).then((questionnaire) => {
+        res.status(200).send({
+            questionnaire: questionnaire
+        })
+    }).catch((err) => {
+        return ErrorHandler.returnError(err);
+    })
+})
 
 router.get('/:id', (req, res) => {
     if(mongoose.Types.ObjectId.isValid(req.params.id)) {

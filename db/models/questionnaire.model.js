@@ -12,7 +12,7 @@ const questionnaireSchema = new mongoose.Schema({
     questions:{
         type : Array,
         "default" : [{
-            title: "How was your overall experience",
+            title: "Rate your overall experience.",
             input: 0
         }]
     }
