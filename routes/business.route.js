@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 
 const { Business } = require('../db/models/business.model');
 
@@ -178,6 +179,24 @@ router.post('/signup', async (req, res) => {
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);
     });
+});
+
+router.get('/:id/is-active', (req, res) => {
+    if(mongoose.Types.ObjectId.isValid(req.params.id)) {
+        BusinessService.getBusiness({_id: req.params.id}).then((business) => {
+            SubscriptionService.getActiveSubscription({businessId: business._id}).then((subscription) => {
+                res.status(200).send({
+                    active: (subscription.activeSubscription) ? true : false
+                })
+            }).catch((err) => {
+                return ErrorHandler.returnError(err, res);
+            })
+        }).catch((err) => {
+            return ErrorHandler.returnError(err, res);
+        })
+    } else {
+        return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Invalid business id'}, res);
+    }
 })
 
 module.exports = router;

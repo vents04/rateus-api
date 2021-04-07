@@ -121,7 +121,8 @@
         "notFound": "Questionnaire not found! If you think this is an error please contact us at support@uploy.app or by calling +359 882 764 107",
         "successTitle": "Success",
         "successDescription": "We have sent your answers. Thank you for your time.",
-        "currentValue": "Current value:"
+        "currentValue": "Current value:",
+        "notActive": "Unfortunately, this questionnaire is not active! Thank you for your time!"
     },
     "edit-questionnaire": {
         "dropdownTitle": "Choose a language",
