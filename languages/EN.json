@@ -207,7 +207,7 @@
         "cancelButton": "Cancel",
         "return": {
             "title": "Success!",
-            "description": "Your subscription has been activated! Enjoy your new business accession! If you have any questions, do not mind and message or call us."
+            "description": "Your subscription has been activated and you will be charged from tomorrow on! You can start using our services as of tomorrow! Enjoy your new business accession! If you have any questions, do not mind and message or call us."
         },
         "cancel": {
             "title": "Canceled!",
