@@ -88,8 +88,8 @@ class PaypalService {
                                 "payer_selected": "PAYPAL",
                                 "payee_preferred": "IMMEDIATE_PAYMENT_REQUIRED"
                             },
-                            "return_url": `https://google.com`,
-                            "cancel_url": `https://google.com`
+                            "return_url": `${ROOT_URL_FRONTEND}/subscription-result?type=return`,
+                            "cancel_url": `${ROOT_URL_FRONTEND}/subscription-result?type=cancel`
                         }
                     }, {
                         headers: {

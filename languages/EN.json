@@ -201,5 +201,18 @@
         "activatingText": "Activating...",
         "activateButton": "Activate subscription",
         "recommendedText": "Recommended"
+    },
+    "subscription-result": {
+        "dropdownTitle": "Choose a language",
+        "cancelButton": "Cancel",
+        "return": {
+            "title": "Success!",
+            "description": "Your subscription has been activated! Enjoy your new business accession! If you have any questions, do not mind and message or call us."
+        },
+        "cancel": {
+            "title": "Canceled!",
+            "description": "The process of activating a subscription was canceled. You can activate one by going to the dashboard by the button below.",
+            "buttonText": "Go to dashboard"
+        }
     }
 }
