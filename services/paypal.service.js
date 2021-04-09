@@ -3,7 +3,7 @@ const { PAYPAL_CLIENT_ID, PAYPAL_SECRET, ROOT_URL_FRONTEND } = require('../globa
 
 const { Subscription } = require('../db/models/subscription.model');
 
-const BusinessService = new (require('./business.service').BusinessService)();
+const BusinessService = new(require('./business.service').BusinessService)();
 
 class PaypalService {
     getAccessToken() {
@@ -46,7 +46,7 @@ class PaypalService {
                         resolve(response.data);
                     }).catch((err) => {
                         if (err.response.status == 404) {
-                            Subscription.findOneAndDelete({ subscriptionId: subscriptionId }).then((deletedObject) => {
+                            Subscription.findOneAndDelete({subscriptionId: subscriptionId}).then((deletedObject) => {
                                 resolve(null);
                             })
                         } else {
@@ -69,7 +69,7 @@ class PaypalService {
     createSubscription(planId, businessEmail) {
         return new Promise((resolve, reject) => {
             this.getAccessToken().then((accessToken) => {
-                try {
+                try {   
                     var tomorrow = new Date();
                     tomorrow.setDate(tomorrow.getDate() + 1);
                     tomorrow = tomorrow.toISOString();
@@ -92,8 +92,8 @@ class PaypalService {
                                 "payer_selected": "PAYPAL",
                                 "payee_preferred": "IMMEDIATE_PAYMENT_REQUIRED"
                             },
-                            "return_url": `${ROOT_URL_FRONTEND}/subscription-result?type=return`,
-                            "cancel_url": `${ROOT_URL_FRONTEND}/subscription-result?type=cancel`
+                            "return_url": `https://google.com`,
+                            "cancel_url": `https://google.com`
                         }
                     }, {
                         headers: {
@@ -123,7 +123,7 @@ class PaypalService {
 
     getPlan(planId) {
         return new Promise((resolve, reject) => {
-            this.getAccessToken().then((accessToken) => {
+            this.getAccessToken().then((accessToken) => { 
                 try {
                     axios.get(`https://api-m.sandbox.paypal.com/v1/billing/plans/${planId}`, {
                         headers: {
