@@ -116,7 +116,7 @@
     "answer-questionnaire": {
         "dropdownTitle": "Choose a language",
         "cancelButton": "Cancel",
-        "pusher": "Help by sending your answers",
+        "pusher": "Share your opinion",
         "placeholder": "Type here",
         "previousButton": "Previous",
         "nextButton": "Next",
