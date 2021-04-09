@@ -73,6 +73,10 @@ class PaypalService {
                     var tomorrow = new Date();
                     tomorrow.setDate(tomorrow.getDate() + 1);
                     tomorrow = tomorrow.toISOString();
+
+                    // RETURN_URL = `${ROOT_URL_FRONTEND}/subscription-result?type=return` //
+                    // CANCEL_URL = `${ROOT_URL_FRONTEND}/subscription-result?type=cancel` //
+
                     axios.post('https://api-m.sandbox.paypal.com/v1/billing/subscriptions', {
                         "plan_id": `${planId}`,
                         "start_time": tomorrow,
@@ -101,6 +105,7 @@ class PaypalService {
                     }).then((response) => {
                         resolve(response.data);
                     }).catch((err) => {
+                        console.log(err.response.data);
                         reject({
                             'errorCode': err.response.status
                         })
