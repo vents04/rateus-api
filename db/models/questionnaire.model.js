@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
 const questionnaireSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String,
         required: true
     },
-    businessId:{
+    businessId: {
         type: mongoose.Types.ObjectId,
         required: true
     },
-    questions:{
-        type : Array,
-        "default" : [{
+    questions: {
+        type: Array,
+        "default": [{
             title: "Rate your overall experience.",
             input: 0
         }]
@@ -19,4 +19,4 @@ const questionnaireSchema = new mongoose.Schema({
 })
 
 const Questionnaire = mongoose.model("Questionnaire", questionnaireSchema);
-module.exports = {Questionnaire}
+module.exports = { Questionnaire }

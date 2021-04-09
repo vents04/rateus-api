@@ -9,7 +9,7 @@ const { ROOT_URL, ROOT_URL_FRONTEND } = require('./global');
 const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND];
 
 app.use(cors({
-    origin: function(origin, callback) {
+    origin: function (origin, callback) {
         if (!origin) return callback(null, true);
         if (allowedOrigins.indexOf(origin) === -1) {
             let msg = 'The CORS policy for this site does not allow access from the specified Origin.';
@@ -19,7 +19,7 @@ app.use(cors({
     }
 }));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,auth-token');
     res.setHeader('Access-Control-Expose-Headers', '*');
     next();

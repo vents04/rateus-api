@@ -16,7 +16,7 @@ const businessSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
-    password:{
+    password: {
         type: String,
         required: true,
         minlength: 8,

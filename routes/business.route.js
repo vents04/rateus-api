@@ -6,11 +6,11 @@ const mongoose = require('mongoose');
 
 const { Business } = require('../db/models/business.model');
 
-const ErrorHandler = new(require('../services/error-handling.service').ErrorHandler)();
-const BusinessService = new(require('../services/business.service').BusinessService)();
-const QuestionnaireService = new(require('../services/questionnaire.service').QuestionnaireService)();
-const AnswerService = new(require('../services/answer.service').AnswerService)();
-const SubscriptionService = new(require('../services/subscription.service').SubscriptionService)();
+const ErrorHandler = new (require('../services/error-handling.service').ErrorHandler)();
+const BusinessService = new (require('../services/business.service').BusinessService)();
+const QuestionnaireService = new (require('../services/questionnaire.service').QuestionnaireService)();
+const AnswerService = new (require('../services/answer.service').AnswerService)();
+const SubscriptionService = new (require('../services/subscription.service').SubscriptionService)();
 
 const { JWT_SECRET } = require('../global');
 
@@ -22,7 +22,7 @@ router.post('/login', (req, res) => {
     const { error } = loginValidation(req.body);
     if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
 
-    BusinessService.getBusiness({ email: req.body.email }).then(async(business) => {
+    BusinessService.getBusiness({ email: req.body.email }).then(async (business) => {
         if (business) {
             const validPassword = await bcrypt.compare(req.body.password, business.password);
             if (!validPassword) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'The email or phone or password is wrong' }, res);
@@ -74,7 +74,7 @@ router.post('/check-token', (req, res) => {
 });
 
 router.get('/', authenticate, (req, res) => {
-    BusinessService.getBusiness({_id: req.business._id}).then((business) => {
+    BusinessService.getBusiness({ _id: req.business._id }).then((business) => {
         delete business.lastPasswordReset; delete business.accountCreation; delete business.__v; delete business.uId;
         res.status(200).send({
             business: business
@@ -85,18 +85,18 @@ router.get('/', authenticate, (req, res) => {
 })
 
 router.get('/dashboard', authenticate, (req, res) => {
-    QuestionnaireService.getQuestionnaires({ businessId: req.business._id}).then(async (questionnaires) => {
+    QuestionnaireService.getQuestionnaires({ businessId: req.business._id }).then(async (questionnaires) => {
         let totalAnswers = 0, lastWeekAnswers = 0, tempAnswers = 0;
         let questionnairesResult = [];
         let activeSubscription = null;
         for (let index = 0; index < questionnaires.length; index++) {
-            await new Promise((resolve, reject) => { 
+            await new Promise((resolve, reject) => {
                 AnswerService.getAnswers({ questionnaireId: questionnaires[index]._id }).then((answers) => {
                     tempAnswers += answers.length;
                     for (let j = 0; j < answers.length; j++) {
-                        if(new Date(answers[j].dt).getTime() + 604800000 >= new Date().getTime()) {
+                        if (new Date(answers[j].dt).getTime() + 604800000 >= new Date().getTime()) {
                             lastWeekAnswers++;
-                        }   
+                        }
                     }
                     resolve();
                 });
@@ -108,7 +108,7 @@ router.get('/dashboard', authenticate, (req, res) => {
         }
 
         await new Promise((resolve, reject) => {
-            SubscriptionService.getActiveSubscription({businessId: req.business._id}).then((activeSubscriptionResponse) => {
+            SubscriptionService.getActiveSubscription({ businessId: req.business._id }).then((activeSubscriptionResponse) => {
                 activeSubscription = activeSubscriptionResponse;
                 resolve();
             })
@@ -127,7 +127,7 @@ router.get('/dashboard', authenticate, (req, res) => {
 })
 
 router.get('/:id/color', (req, res) => {
-    BusinessService.getBusiness({_id: req.params.id}).then((business) => {
+    BusinessService.getBusiness({ _id: req.params.id }).then((business) => {
         res.status(200).send({
             color: business.color
         })
@@ -137,8 +137,8 @@ router.get('/:id/color', (req, res) => {
 })
 
 router.put('/color', authenticate, (req, res) => {
-    if(req.body.color) {
-        if(req.body.color[0] != '#' || req.body.color.length != 7) {
+    if (req.body.color) {
+        if (req.body.color[0] != '#' || req.body.color.length != 7) {
             return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': "Invalid color" }, res);
         }
     }
@@ -146,7 +146,7 @@ router.put('/color', authenticate, (req, res) => {
         return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': "Invalid color" }, res);
     }
 
-    BusinessService.updateBusiness({_id: req.business._id}, { color: req.body.color }).then((business) => {
+    BusinessService.updateBusiness({ _id: req.business._id }, { color: req.body.color }).then((business) => {
         res.status(200).send({
             business: business
         })
@@ -165,7 +165,7 @@ router.post('/signup', async (req, res) => {
     req.body.password = hashedPassword;
 
     BusinessService.getBusiness({ email: req.body.email }).then((business) => {
-        if(!business) {
+        if (!business) {
             BusinessService.createBusiness(req.body).then((business) => {
                 res.status(200).send({
                     business: business
@@ -174,7 +174,7 @@ router.post('/signup', async (req, res) => {
                 return ErrorHandler.returnError(err, res);
             });
         } else {
-            return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'An account with that email already exists!'}, res);
+            return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'An account with that email already exists!' }, res);
         }
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);
@@ -182,9 +182,9 @@ router.post('/signup', async (req, res) => {
 });
 
 router.get('/:id/is-active', (req, res) => {
-    if(mongoose.Types.ObjectId.isValid(req.params.id)) {
-        BusinessService.getBusiness({_id: req.params.id}).then((business) => {
-            SubscriptionService.getActiveSubscription({businessId: business._id}).then((subscription) => {
+    if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+        BusinessService.getBusiness({ _id: req.params.id }).then((business) => {
+            SubscriptionService.getActiveSubscription({ businessId: business._id }).then((subscription) => {
                 res.status(200).send({
                     active: (subscription.activeSubscription) ? true : false
                 })
@@ -195,7 +195,7 @@ router.get('/:id/is-active', (req, res) => {
             return ErrorHandler.returnError(err, res);
         })
     } else {
-        return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Invalid business id'}, res);
+        return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Invalid business id' }, res);
     }
 })
 

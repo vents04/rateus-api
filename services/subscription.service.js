@@ -1,7 +1,7 @@
 const { Subscription } = require('../db/models/subscription.model');
 
-const PaypalService = new(require('./paypal.service').PaypalService)();
-const BusinessService = new(require('./business.service').BusinessService)();
+const PaypalService = new (require('./paypal.service').PaypalService)();
+const BusinessService = new (require('./business.service').BusinessService)();
 
 class SubscriptionService {
     getActiveSubscription(data) {
@@ -14,7 +14,7 @@ class SubscriptionService {
                     let message = null;
                     let canIssueNewSubscription = false;
 
-                    if(subscriptions.length == 0) canIssueNewSubscription = true;
+                    if (subscriptions.length == 0) canIssueNewSubscription = true;
 
                     for (let subscription of subscriptions) {
                         await new Promise((resolve, reject) => {
@@ -33,7 +33,7 @@ class SubscriptionService {
                                         message = "You subscription was canceled, suspended or has expired. You can now active a new one."
                                         canIssueNewSubscription = true;
                                     } else {
-                                        Subscription.findOneAndDelete({subscriptionId: subscription.subscriptionId}).then(() => {
+                                        Subscription.findOneAndDelete({ subscriptionId: subscription.subscriptionId }).then(() => {
 
                                         });
                                     }
@@ -64,9 +64,9 @@ class SubscriptionService {
     createSubscription(planId, businessId) {
         return new Promise((resolve, reject) => {
             try {
-                this.getActiveSubscription({businessId: businessId}).then((response) => {
-                    if(response.canIssueNewSubscription) {
-                        BusinessService.getBusiness({_id: businessId}).then((business) => {
+                this.getActiveSubscription({ businessId: businessId }).then((response) => {
+                    if (response.canIssueNewSubscription) {
+                        BusinessService.getBusiness({ _id: businessId }).then((business) => {
                             PaypalService.createSubscription(planId, business.email).then((paypalSubscription) => {
                                 console.log(paypalSubscription);
                                 var tomorrow = new Date();

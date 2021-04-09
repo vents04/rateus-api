@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const ErrorHandler = new(require('../services/error-handling.service').ErrorHandler)();
-const WaitlistService = new(require('../services/waitlist.service').WaitlistService)();
+const ErrorHandler = new (require('../services/error-handling.service').ErrorHandler)();
+const WaitlistService = new (require('../services/waitlist.service').WaitlistService)();
 
 const { createWaitlistValidation } = require('../validation/validation');
 
