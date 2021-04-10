@@ -6,26 +6,7 @@
         "slogan": "Get clients' feedback right in your store.",
         "signupButton": "Signup",
         "description": "or ask your questions to support@uploy.app",
-        "primaryText": "Log in your Rate us business account"
-    },
-    "apply": {
-        "title": "Apply",
-        "inputs": [
-            {
-                "title": "Business address",
-                "placeholder": "Click here to type"
-            },
-            {
-                "title": "Email / Phone number",
-                "placeholder": "Click here to type"
-            }
-        ],
-        "description": "When you submit your application a person from our team will contact you to tailor the best solution for you and your business.",
-        "submitButton": "Submit",
-        "dropdownTitle": "Choose a language",
-        "cancelButton": "Cancel",
-        "error": "There was an error submitting your application. Please try again or call us on +359 882 764 107",
-        "success": "Successfully submitted! You will be redirected to home."
+        "primaryText": "Log in with your Rate us business account"
     },
     "login": {
         "title": "Login",
@@ -74,8 +55,8 @@
             "and",
             "Terms and conditions"
         ],
-        "success": "Account created successfully! You will be redirected to login.",
-        "passwordError": "You password should be at least 8 characters",
+        "success": "Account created successfully! You will be redirected to Login.",
+        "passwordError": "Your password should be at least 8 characters",
         "emailExistsError": "An account with that email already exists",
         "emailInvalidError": "Email is invalid"
     },
@@ -86,7 +67,7 @@
         "info": [
             "If you have any questions, you can contact our support at",
             "support@uploy.app",
-            "or call",
+            "or by calling",
             "+359 882 764 107"
         ],
         "stats": [
@@ -115,17 +96,17 @@
         },
         "colorDropdown": {
             "title": "Select brand color",
-            "description": "When people answer your questionnaires the page will have this brand color on all elements where it should be placed.",
+            "description": "When people answer your questionnaires the page will have this brand color on all color-changing elements.",
             "cancelButton": "Cancel"
         },
-        "warning": "We recommend previewing the answers on a larger screen.",
+        "warning": "We recommend previewing the answers on a larger screen!",
         "pendingMessage": "Your account is pending a quick review from our team. After we verify it, you can choose a subscription plan.",
-        "blockedMessage": "Your account has been blocked.",
+        "blockedMessage": "Your account has been blocked!",
         "subscriptionMessage": "Activate subscription",
         "showMySubscription": "Show my subscription",
-        "errorCreating": "There was an error creating the questionnaire. Try again or contact support.",
+        "errorCreating": "There was an error creating the questionnaire! Try again or contact support.",
         "addQuestionnaireButton": "Add questionnaire",
-        "cannotActivate": "Your questionnaire is not active because you have not activated a subscription.",
+        "cannotActivate": "Your questionnaire is not active because you have not activated a subscription!",
         "maxQuestionnaires": [
             "Your subscription plan does not support more than",
             "questionnaires. Contact support to upgrade."
@@ -139,10 +120,10 @@
         "previousButton": "Previous",
         "nextButton": "Next",
         "finishAndSubmitButton": "Finish and submit",
-        "error": "There was an error submitting your answers. Please try again or contact support at support@support@uploy.app or by calling +359 882 764 107",
+        "error": "There was an error submitting your answers! Please try again or contact support at support@uploy.app or by calling +359 882 764 107",
         "notFound": "Questionnaire not found! If you think this is an error please contact us at support@uploy.app or by calling +359 882 764 107",
         "successTitle": "Success",
-        "successDescription": "We have sent your answers. Thank you for your time.",
+        "successDescription": "We have sent your answers. Thank you, for your time!",
         "currentValue": "Current value:",
         "notActive": "Unfortunately, this questionnaire is not active! Thank you for your time!"
     },
@@ -164,7 +145,7 @@
                         "title": "With text"
                     },
                     {
-                        "title": "With rating from 0 to 10"
+                        "title": "With rating from 0 to 100"
                     }
                 ]
             }
@@ -172,9 +153,9 @@
         "deleteQuestionButton": "Delete this question",
         "finishAndSubmitButton": "Finish and submit",
         "notFound": "Questionnaire not found! If you think this is an error please contact us at support@uploy.app or by calling +359 882 764 107",
-        "error": "There was an error updating your questionnaire. Try again or contact support at support@uploy.app or by calling +359 882 764 107",
-        "success": "Successfully updated the questionnaire! The window will reload in 4s.",
-        "errorNull": "You cannot create an empty question!"
+        "error": "There was an error updating your questionnaire! Try again or contact support at support@uploy.app or by calling +359 882 764 107",
+        "success": "Successfully updated the questionnaire! You will be redirected to Dashboard in 4s.",
+        "errorNull": "You cannot submit an empty question!"
     },
     "subscriptions": {
         "dropdownTitle": "Choose a language",
@@ -182,13 +163,13 @@
         "logOutButton": "Log out",
         "title": "Subscriptions",
         "errorTitle": "Error",
-        "errorMessage": "You must signup for a Uploy business account before accessing subscriptions page.",
+        "errorMessage": "You must signup for a Uploy business account before accessing subscriptions page!",
         "errorButton": "Go to Home",
         "loadingText": "Loading...",
         "plans": {
             "includesText": "Includes:",
             "activeFromText": "Active from:",
-            "cancelText": "If you want to cancel or upgrade the subscription, contact support at support@uploy.app or call +359 882 764 107",
+            "cancelText": "If you want to cancel or upgrade the subscription, contact us at support@uploy.app or call +359 882 764 107",
             "basic": {
                 "title": "Basic",
                 "includes": [
@@ -250,12 +231,12 @@
         "cancelButton": "Cancel",
         "return": {
             "title": "Success!",
-            "description": "Your subscription has been activated and you will be charged from tomorrow on! You can start using our services as of tomorrow! Enjoy your new business accession! If you have any questions, do not mind and message or call us."
+            "description": "Your subscription has been activated and you will be charged from tomorrow on! You can start using our services as of tomorrow! Enjoy your new business accession! If you have any questions, do not mind and contact us."
         },
         "cancel": {
             "title": "Canceled!",
-            "description": "The process of activating a subscription was canceled. You can activate one by going to the dashboard by the button below.",
-            "buttonText": "Go to dashboard"
+            "description": "The process of activating your subscription was canceled. You can activate one by going to Dashboard by clicking the button below.",
+            "buttonText": "Go to Dashboard"
         }
     }
 }
