@@ -9,7 +9,7 @@ class PaypalService {
     getAccessToken() {
         return new Promise((resolve, reject) => {
             try {
-                axios.post('https://api.sandbox.paypal.com/v1/oauth2/token', {}, {
+                axios.post('https://api.paypal.com/v1/oauth2/token', {}, {
                     headers: {
                         Accept: 'application/json',
                         'Accept-Language': 'en_US',
@@ -37,7 +37,7 @@ class PaypalService {
         return new Promise((resolve, reject) => {
             this.getAccessToken().then((accessToken) => {
                 try {
-                    axios.get(`https://api-m.sandbox.paypal.com/v1/billing/subscriptions/${subscriptionId}`, {
+                    axios.get(`https://api-m.paypal.com/v1/billing/subscriptions/${subscriptionId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${accessToken}`
@@ -77,7 +77,7 @@ class PaypalService {
                     // RETURN_URL = `${ROOT_URL_FRONTEND}/subscription-result?type=return` //
                     // CANCEL_URL = `${ROOT_URL_FRONTEND}/subscription-result?type=cancel` //
 
-                    axios.post('https://api-m.sandbox.paypal.com/v1/billing/subscriptions', {
+                    axios.post('https://api-m.paypal.com/v1/billing/subscriptions', {
                         "plan_id": `${planId}`,
                         "start_time": tomorrow,
                         "subscriber": {
@@ -92,8 +92,8 @@ class PaypalService {
                                 "payer_selected": "PAYPAL",
                                 "payee_preferred": "IMMEDIATE_PAYMENT_REQUIRED"
                             },
-                            "return_url": `https://google.com`,
-                            "cancel_url": `https://google.com`
+                            "return_url": `${ROOT_URL_FRONTEND}/subscription-result?type=return`,
+                            "cancel_url": `${ROOT_URL_FRONTEND}/subscription-result?type=cancel`
                         }
                     }, {
                         headers: {
@@ -125,7 +125,7 @@ class PaypalService {
         return new Promise((resolve, reject) => {
             this.getAccessToken().then((accessToken) => { 
                 try {
-                    axios.get(`https://api-m.sandbox.paypal.com/v1/billing/plans/${planId}`, {
+                    axios.get(`https://api-m.paypal.com/v1/billing/plans/${planId}`, {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${accessToken}`
