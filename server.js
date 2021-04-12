@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoDb = require('./db/mongoose');
 const helmet = require("helmet");
-const { ROOT_URL, ROOT_URL_FRONTEND } = require('./global');
+const { ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_ADMIN_FRONTEND } = require('./global');
 
-const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND];
+const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_ADMIN_FRONTEND];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -35,7 +35,8 @@ const {
     questionnaire,
     answer,
     language,
-    subscription
+    subscription,
+    admin
 } = require('./routes/all-routes.import');
 
 app.use('/waitlist', waitlist);
@@ -44,6 +45,7 @@ app.use('/questionnaire', questionnaire);
 app.use('/answer', answer);
 app.use('/language', language);
 app.use('/subscription', subscription);
+app.use('/admin', admin);
 
 app.listen(process.env.PORT || 8081, () => {
     console.log("Server listening on port 8081");

@@ -4,6 +4,7 @@ const questionnaireRoute = require('./questionnaire.route');
 const answerRoute = require('./answer.route');
 const languageRoute = require('./language.route');
 const subscriptionRoute = require('./subscription.route');
+const adminRoute = require('./admin.route');
 
 module.exports = {
     waitlist: waitlistRoute,
@@ -11,5 +12,6 @@ module.exports = {
     questionnaire: questionnaireRoute,
     answer: answerRoute,
     language: languageRoute,
-    subscription: subscriptionRoute
+    subscription: subscriptionRoute,
+    admin: adminRoute
 }

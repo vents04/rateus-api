@@ -31,6 +31,20 @@ class BusinessService {
         })
     }
 
+    getBusinesses(data) {
+        return new Promise((resolve, reject) => {
+            try {
+                Business.find(data).lean(true).then((businesses) => {
+                    resolve(businesses);
+                });
+            } catch (err) {
+                reject({
+                    'errorCode': 500,
+                });
+            }
+        })
+    }
+
     updateBusiness(findData, updateData) {
         return new Promise((resolve, reject) => {
             try {
