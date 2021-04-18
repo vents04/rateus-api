@@ -4,9 +4,36 @@
         "cancelButton": "Cancel",
         "beta": "BETA",
         "slogan": "Get clients' feedback right in your store.",
-        "signupButton": "Signup",
+        "showoffDescription": "Improve your business by collecting customers' feedback on whatever you ask for. It is as easy as scanning a QR code to open your questionnaires and answer them. We can also set NFC tags which open the questionnaires after a connection between them and a smartphone is made.",
+        "signupButton": "Account",
         "description": "or ask your questions to support@uploy.app",
-        "primaryText": "Log in with your Rate us business account"
+        "primaryText": "Log in with your Rate us business account",
+        "whatDoYouGetSeciton": {
+            "title": "What do you get?",
+            "advantages": ["Better overview of what your customers think for your business", "The ability to preview if new changes are likable to to your customers", "Honest feedback because all of your customers' answers are anonymous", "Increase in sales if clients' feedback is important for you", "Closer connection between you and the customer in which they feel as a participant in your business"]
+        },
+        "howItWorksSection": {
+            "title": "How it works?",
+            "columns": [
+                {
+                    "title": "Signup",
+                    "description": "You signup to the platform and we will activate your account ASAP if it meets our requirements."
+                },
+                {
+                    "title": "Subscription",
+                    "description": "Log in to your dashboard and you can activate a subscription which you found suitable to your business."
+                },
+                {
+                    "title": "Live",
+                    "description": "We will deliver all your QR code cards and NFC tags personally if you are based in Sofia, Bulgaria. If you are not located there, we will send you a pack of all the files needed to go live which you can print and put in a place where clients can see."
+                }
+            ]
+        },
+        "finalSection": {
+            "title": "Are you ready to improve your business?",
+            "description": "You can ask additional questions at support@uploy.app or by calling +359 882 764 107",
+            "buttonText": "Yes, I will not miss this opportunity!"
+        }
     },
     "login": {
         "title": "Login",
@@ -47,6 +74,7 @@
         "continueButton": "Continue",
         "dropdownTitle": "Choose a language",
         "cancelButton": "Cancel",
+        "goBackButton": "Go back",
         "description": [
             "By signing up you agree to our",
             "Privacy policy",
@@ -58,7 +86,8 @@
         "success": "Account created successfully! You will be redirected to Login.",
         "passwordError": "Your password should be at least 8 characters",
         "emailExistsError": "An account with that email already exists",
-        "emailInvalidError": "Email is invalid"
+        "emailInvalidError": "Email is invalid",
+        "loginText": "Click here if you have an account"
     },
     "dashboard": {
         "dropdownTitle": "Choose a language",

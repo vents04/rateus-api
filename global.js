@@ -1,6 +1,6 @@
 module.exports = {
-    ROOT_URL: 'https://api.rateus.uploy.app',
-    ROOT_URL_FRONTEND: 'https://rateus.uploy.app',
+    ROOT_URL: 'http://localhost:8001',
+    ROOT_URL_FRONTEND: 'http://localhost:4200',
     ROOT_URL_ADMIN_FRONTEND: 'http://localhost:4201',
     JWT_SECRET: 'IMjbVViINeVwmvmj2BWg',
     PAYPAL_CLIENT_ID: 'AUVSsgxPMCJREPOZAA7_HXRQZffue5ERk17tq8-NX3hzA04VoXTdvh-BIz-vmQ2SIONCVXUtWPlRvnFn',
