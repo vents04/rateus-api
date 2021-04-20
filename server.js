@@ -30,6 +30,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json({ limit: '50MB' })).use(express.urlencoded({ extended: true }));
 
 app.use(helmet());
+app.use(cors());
 
 const {
     waitlist,
