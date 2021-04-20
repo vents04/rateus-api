@@ -8,6 +8,7 @@ const { ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_ADMIN_FRONTEND } = require('./glob
 
 const allowedOrigins = [ROOT_URL, ROOT_URL_FRONTEND, ROOT_URL_ADMIN_FRONTEND];
 
+/*
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
@@ -18,6 +19,7 @@ app.use(cors({
         return callback(null, true);
     }
 }));
+*/
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,auth-token');
