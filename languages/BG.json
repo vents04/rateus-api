@@ -113,7 +113,8 @@
         "questionnaires": {
             "title": "Анкети",
             "editButton": "Промени",
-            "responses": "отговори"
+            "responses": "отговори",
+            "openAnswers": "Отвори отговорите"
         },
         "answers": {
             "title": "Отговори на",

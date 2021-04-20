@@ -113,7 +113,8 @@
         "questionnaires": {
             "title": "Questionnaires",
             "editButton": "Edit",
-            "responses": "Responses"
+            "responses": "Responses",
+            "openAnswers": "Open answers"
         },
         "answers": {
             "title": "Answers to",
