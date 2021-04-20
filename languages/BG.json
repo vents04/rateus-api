@@ -140,7 +140,8 @@
         "maxQuestionnaires": [
             "Вашият абонамент не поддържа повече от",
             "анкети. Свържете се с нас, за да промените плана."
-        ]
+        ],
+        "invalidCurrentPassword": "Сегашната парола е невярна"
     },
     "answer-questionnaire": {
         "dropdownTitle": "Избери език",

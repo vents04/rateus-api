@@ -14,7 +14,7 @@ const SubscriptionService = new (require('../services/subscription.service').Sub
 
 const { JWT_SECRET } = require('../global');
 
-const { loginValidation, signupValidation } = require('../validation/validation');
+const { loginValidation, signupValidation, passwordUpdateValidation } = require('../validation/validation');
 
 const authenticate = require('../middlewares/authenticate');
 
@@ -150,6 +150,31 @@ router.put('/color', authenticate, (req, res) => {
         res.status(200).send({
             business: business
         })
+    }).catch((err) => {
+        return ErrorHandler.returnError(err, res);
+    })
+})
+
+router.put('/password', authenticate, (req, res) => {
+    const { error } = passwordUpdateValidation(req.body);
+    if (error) return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': error.details[0].message }, res);
+
+    BusinessService.getBusiness({ _id: req.business._id}).then(async (business) => {
+        const validPassword = await bcrypt.compare(req.body.currentPassword, business.password);
+        if(validPassword) {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(req.body.newPassword, salt);
+            
+            BusinessService.updateBusiness({ _id: req.business._id}, {password: hashedPassword}).then((updatedBusiness) => {
+                res.status(200).send({
+                    updatedBusiness
+                })
+            }).catch((err) => {
+                return ErrorHandler.returnError(err, res);
+            })
+        } else {
+            return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Current password is not valid'}, res);
+        }
     }).catch((err) => {
         return ErrorHandler.returnError(err, res);
     })

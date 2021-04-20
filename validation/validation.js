@@ -64,6 +64,14 @@ const questionnaireCreationValidation = data => {
     return schema.validate(data);
 }
 
+const passwordUpdateValidation = data => {
+    const schema = Joi.object({
+        currentPassword: Joi.string().required(),
+        newPassword: Joi.string().required()
+    })
+    return schema.validate(data);
+}
+
 module.exports.createWaitlistValidation = createWaitlistValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.questionnaireValidation = questionnaireValidation;
@@ -72,3 +80,4 @@ module.exports.createAnswerValidation = createAnswerValidation;
 module.exports.signupValidation = signupValidation;
 module.exports.subscriptionValidation = subscriptionValidation;
 module.exports.questionnaireCreationValidation = questionnaireCreationValidation;
+module.exports.passwordUpdateValidation = passwordUpdateValidation;

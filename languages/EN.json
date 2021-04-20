@@ -140,7 +140,8 @@
         "maxQuestionnaires": [
             "Your subscription plan does not support more than",
             "questionnaires. Contact support to upgrade."
-        ]
+        ],
+        "invalidCurrentPassword": "Current password is not valid"
     },
     "answer-questionnaire": {
         "dropdownTitle": "Choose a language",
