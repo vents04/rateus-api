@@ -64,4 +64,22 @@ router.put('/', authenticate, (req, res) => {
     })
 })
 
+router.delete('/:id', authenticate, (req, res) => {
+    if(mongoose.Types.ObjectId.isValid(req.params.id)) {
+        QuestionnaireService.getQuestionnaire({ _id: req.params.id }).then((questionnaire) => {
+            if(questionnaire.businessId == req.business._id)  {
+                QuestionnaireService.deleteQuestionnaire({_id: req.params.id}).then((deletedQuestionnaire) => {
+                    res.status(200).send({
+                        deletedQuestionnaire: deletedQuestionnaire
+                    });
+                })
+            } else {
+                return ErrorHandler.returnError({ 'errorCode': 403}, res);
+            }
+        })
+    } else {
+        return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Invalid questionnaire id'}, res);
+    }
+})
+
 module.exports = router;

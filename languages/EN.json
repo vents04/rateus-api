@@ -113,7 +113,8 @@
         "questionnaires": {
             "title": "Questionnaires",
             "editButton": "Edit",
-            "responses": "Responses"
+            "responses": "Responses",
+            "openAnswers": "Open answers"
         },
         "answers": {
             "title": "Answers to",
@@ -139,7 +140,8 @@
         "maxQuestionnaires": [
             "Your subscription plan does not support more than",
             "questionnaires. Contact support to upgrade."
-        ]
+        ],
+        "invalidCurrentPassword": "Current password is not valid"
     },
     "answer-questionnaire": {
         "dropdownTitle": "Choose a language",
@@ -181,10 +183,17 @@
         ],
         "deleteQuestionButton": "Delete this question",
         "finishAndSubmitButton": "Finish and submit",
+        "deleteQuestionnaireButton": "Delete questionnaire",
+        "cancelEditQuestionnaire": "Cancel questionnaire",
         "notFound": "Questionnaire not found! If you think this is an error please contact us at support@uploy.app or by calling +359 882 764 107",
         "error": "There was an error updating your questionnaire! Try again or contact support at support@uploy.app or by calling +359 882 764 107",
         "success": "Successfully updated the questionnaire! You will be redirected to Dashboard in 4s.",
-        "errorNull": "You cannot submit an empty question!"
+        "errorNull": "You cannot submit an empty question!",
+        "deleteDropdown": {
+            "description": "Are you sure you want to delete this questionnaire?",
+            "yesText": "Yes",
+            "noText": "No"
+        }
     },
     "subscriptions": {
         "dropdownTitle": "Choose a language",
@@ -260,7 +269,8 @@
         "cancelButton": "Cancel",
         "return": {
             "title": "Success!",
-            "description": "Your subscription has been activated and you will be charged from tomorrow on! You can start using our services as of tomorrow! Enjoy your new business accession! If you have any questions, do not mind and contact us."
+            "description": "Your subscription has been activated and you will be charged from tomorrow on! You can start using our services as of tomorrow! Enjoy your new business accession! If you have any questions, do not mind and contact us.",
+            "buttonText": "Go to Dashboard"
         },
         "cancel": {
             "title": "Canceled!",

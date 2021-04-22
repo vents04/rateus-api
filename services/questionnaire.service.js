@@ -56,6 +56,20 @@ class QuestionnaireService {
             }
         })
     }
+
+    deleteQuestionnaire(data) {
+        return new Promise((resolve, reject) => {
+            try {
+                Questionnaire.findOneAndDelete(data).then((deleteQuestionnaire) => {
+                    resolve(deleteQuestionnaire);
+                });
+            } catch (err) {
+                reject({
+                    'errorCode': 500,
+                });
+            }
+        })
+    }
 }
 
 module.exports.QuestionnaireService = QuestionnaireService;
