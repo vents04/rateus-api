@@ -141,7 +141,16 @@
             "Вашият абонамент не поддържа повече от",
             "анкети. Свържете се с нас, за да промените плана."
         ],
-        "invalidCurrentPassword": "Сегашната парола е невярна"
+        "invalidCurrentPassword": "Сегашната парола е невярна",
+        "downloadQRCodesText": "Изтегли QR код файловете",
+        "updatePasswordSection": {
+            "updatePasswordText": "Обнови паролата си",
+            "currentPasswordText": "Сегашна парола",
+            "newPassword": "Нова парола",
+            "placeholder": "Натисни тук за да пишеш",
+            "saveNewPasswordText": "Запази новата парола",
+            "abortText": "Отказах се"
+        }
     },
     "answer-questionnaire": {
         "dropdownTitle": "Избери език",

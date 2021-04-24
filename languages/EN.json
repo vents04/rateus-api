@@ -141,7 +141,16 @@
             "Your subscription plan does not support more than",
             "questionnaires. Contact support to upgrade."
         ],
-        "invalidCurrentPassword": "Current password is not valid"
+        "invalidCurrentPassword": "Current password is not valid",
+        "downloadQRCodesText": "Download QR code assets",
+        "updatePasswordSection": {
+            "updatePasswordText": "Update password",
+            "currentPasswordText": "Current password",
+            "newPassword": "New password",
+            "placeholder": "Click here to type",
+            "saveNewPasswordText": "Save new password",
+            "abortText": "Abort"
+        }
     },
     "answer-questionnaire": {
         "dropdownTitle": "Choose a language",
