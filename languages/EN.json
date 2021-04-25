@@ -122,7 +122,8 @@
             "table": [
                 "№",
                 "Date and time"
-            ]
+            ],
+            "downloadInCsv": "Download in .csv file"
         },
         "colorDropdown": {
             "title": "Select brand color",
@@ -150,7 +151,7 @@
             "placeholder": "Click here to type",
             "saveNewPasswordText": "Save new password",
             "abortText": "Abort"
-        }
+        },
     },
     "answer-questionnaire": {
         "dropdownTitle": "Choose a language",

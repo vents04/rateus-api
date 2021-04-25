@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 const ErrorHandler = new (require('../services/error-handling.service').ErrorHandler)();
 const QuestionnaireService = new (require('../services/questionnaire.service').QuestionnaireService)();
@@ -80,6 +81,38 @@ router.delete('/:id', authenticate, (req, res) => {
     } else {
         return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Invalid questionnaire id'}, res);
     }
-})
+});
+
+router.get('/:id/download-answers/:fileType', authenticate, (req, res) => {
+    if(mongoose.Types.ObjectId.isValid(req.params.id)) {
+        if(req.params.fileType == 'csv' || req.params.fileType == 'xlsx') {
+            QuestionnaireService.getQuestionnaire({ _id: req.params.id }).then((questionnaire) => {
+                if(questionnaire.businessId == req.business._id) {
+                    if(req.params.fileType == 'csv') {
+                        QuestionnaireService.createCSV({ _id: req.params.id }).then((fileName) => {
+                            var files = fs.createReadStream(`./csvs/${fileName}.csv`);
+                            res.writeHead(200, {'Content-disposition': 'attachment; filename=answers.pdf'}); //here you can add more headers
+                            files.pipe(res);
+                            /*
+                            fs.unlink(`./csvs/${fileName}.csv`, (err) => {
+                                if (err) {
+                                  console.error(err)
+                                  return
+                                }
+                            });
+                            */
+                        });
+                    }
+                } else {
+                    return ErrorHandler.returnError({ 'errorCode': 403 }, res);
+                }
+            })
+        } else {
+            return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Invalid file type'}, res);
+        }
+    } else {
+        return ErrorHandler.returnError({ 'errorCode': 400, 'errorMessage': 'Invalid questionnaire id'}, res);
+    }
+});
 
 module.exports = router;
